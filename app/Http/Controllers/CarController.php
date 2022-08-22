@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
-
+use App\Models\Driver;
 class CarController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        //
+        $cars=Car::all();
+        return view('carlist')->with(compact('cars'));
     }
 
     /**
@@ -24,7 +25,8 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        $drivers=Driver::all();
+        return view('addcar')->with(compact('drivers'));
     }
 
     /**
@@ -35,7 +37,8 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Car::create($request->all());
+        return redirect()->route('car.index');
     }
 
     /**

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Driver;
+use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -24,7 +27,9 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        $clients=User::all();
+        $rooms=Room::all();
+        return view('addbooking')->with(compact('clients','rooms'));
     }
 
     /**
@@ -35,7 +40,8 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Booking::create($request->all());
+        return redirect()->route('booking.index');
     }
 
     /**

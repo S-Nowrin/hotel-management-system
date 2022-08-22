@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('room_number');
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('room_id');
             $table->date('check_in');

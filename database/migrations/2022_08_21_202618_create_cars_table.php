@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
+            $table->string('brand');
+            $table->string('no_plate');
+            $table->unsignedBigInteger('driver_id');
             $table->timestamps();
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade');
         });
     }
 

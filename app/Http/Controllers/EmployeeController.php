@@ -14,7 +14,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees=Employee::all();
+        return view('employeelist')->with(compact('employees'));
     }
 
     /**
@@ -24,7 +25,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('addemployee');
     }
 
     /**
@@ -35,7 +36,8 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Employee::create($request->all());
+        return redirect()->route('employee.index');
     }
 
     /**

@@ -14,7 +14,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms=Room::all();
+        return view('roomlist')->with(compact('rooms'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('addroom');
     }
 
     /**
@@ -35,7 +36,8 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       Room::create($request->all());
+       return redirect()->route('room.index');
     }
 
     /**
@@ -46,7 +48,7 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        
     }
 
     /**

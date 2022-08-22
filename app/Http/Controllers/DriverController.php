@@ -14,7 +14,8 @@ class DriverController extends Controller
      */
     public function index()
     {
-        //
+        $drivers=Driver::all();
+        return view('driverlist')->with(compact('drivers'));
     }
 
     /**
@@ -24,7 +25,7 @@ class DriverController extends Controller
      */
     public function create()
     {
-        //
+        return view('adddriver');
     }
 
     /**
@@ -35,7 +36,8 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Driver::create($request->all());
+        return redirect()->route('driver.index');
     }
 
     /**

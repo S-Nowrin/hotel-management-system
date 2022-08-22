@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalbooking=Booking::all()->count();
+        $totaldeposit = Booking::sum('deposit');
+        return view('dashboard')->with(compact('totalbooking','totaldeposit'));
     }
 }

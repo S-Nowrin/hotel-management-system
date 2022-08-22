@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
+            $table->string('items');
             $table->string('type');
             $table->string('price');
             $table->timestamps();
