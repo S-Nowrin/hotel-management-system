@@ -1,6 +1,11 @@
 @extends('layouts.dashboard')
 @section('content')
-<h2>Car List</h2>
+<h2>Booking List</h2>
+<div class="row">
+<div col-6>
+  <a type="button" class="btn btn-info" href="{{route('booking.create')}}">Add</a>
+</div>
+</div>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>

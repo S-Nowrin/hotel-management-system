@@ -40,6 +40,12 @@ class RoomController extends Controller
        return redirect()->route('room.index');
     }
 
+
+    public function search(Request $request)
+    {
+        $rooms=Room::where('bed_type', 'LIKE', "%$request->search%")->get();
+        return view('roomlist')->with(compact('rooms'));
+    }
     /**
      * Display the specified resource.
      *

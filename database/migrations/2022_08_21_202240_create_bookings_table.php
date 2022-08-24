@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('room_id');
             $table->date('check_in');
-            $table->date('check_out');
-            $table->double('deposit');
+            $table->date('check_out')->nullable();
+            $table->double('deposit')->default('0');
             $table->timestamps();
             $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');

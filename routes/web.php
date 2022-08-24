@@ -19,18 +19,28 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::group(["prefix" => 'dashboard','middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
     Route::group(["prefix" => 'booking'], function () {
         Route::get('/', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
         Route::get('/add', [App\Http\Controllers\BookingController::class, 'create'])->name('booking.create')->middleware('admin');
         Route::post('/add', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store')->middleware('admin');
+        Route::get('/book/{room}', [App\Http\Controllers\BookingController::class, 'book'])->name('booking.book');
+        
+    });
+
+    Route::group(["prefix" => 'menu'], function () {
+        Route::get('/', [App\Http\Controllers\MenuController::class, 'index'])->name('menu.index');
+        Route::get('/add', [App\Http\Controllers\MenuController::class, 'create'])->name('menu.create')->middleware('admin');
+        Route::post('/add', [App\Http\Controllers\MenuController::class, 'store'])->name('menu.store')->middleware('admin');
     });
 
     Route::group(["prefix" => 'room'], function () {
         Route::get('/', [App\Http\Controllers\RoomController::class, 'index'])->name('room.index');
         Route::get('/add', [App\Http\Controllers\RoomController::class, 'create'])->name('room.create')->middleware('admin');
         Route::post('/add', [App\Http\Controllers\RoomController::class, 'store'])->name('room.store')->middleware('admin');
+        Route::post('/search', [App\Http\Controllers\RoomController::class, 'search'])->name('room.search');
     });
     Route::group(["prefix" => 'employee'], function () {
         Route::get('/', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employee.index');
@@ -46,5 +56,11 @@ Route::group(["prefix" => 'dashboard','middleware' => 'auth'], function () {
         Route::get('/', [App\Http\Controllers\CarController::class, 'index'])->name('car.index');
         Route::get('/add', [App\Http\Controllers\CarController::class, 'create'])->name('car.create')->middleware('admin');
         Route::post('/add', [App\Http\Controllers\CarController::class, 'store'])->name('car.store')->middleware('admin');
+    });
+
+    Route::group(["prefix" => 'facility'], function () {
+        Route::get('/', [App\Http\Controllers\PickDropFacilityController::class, 'index'])->name('facility.index');
+        Route::get('/add', [App\Http\Controllers\PickDropFacilityController::class, 'create'])->name('facility.create')->middleware('admin');
+        Route::post('/add', [App\Http\Controllers\PickDropFacilityController::class, 'store'])->name('facility.store')->middleware('admin');
     });
 });

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('pick_location');
             $table->string('drop_location');
+            $table->string('cost');
+            $table->unsignedBigInteger('car_id');
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->timestamps();
         });
     }

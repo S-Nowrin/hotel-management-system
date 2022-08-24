@@ -75,7 +75,10 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+  <form class="form-control" method="POST" action="{{route('room.search')}}">
+    @csrf
+  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" name="search">
+  </form>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3" href="{{ route('logout') }}"
@@ -97,7 +100,7 @@
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" aria-current="page" href="{{route('dashboard.index')}}">
               <span data-feather="home" class="align-text-bottom"></span>
               Dashboard
             </a>
@@ -108,22 +111,48 @@
               Room
             </a>
           </li>
+          @if(Auth::user()->isAdmin())
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('booking.index')}}">
+              <span data-feather="file" class="align-text-bottom"></span>
+              Booking
+            </a>
+          </li>
+          @endif
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('menu.index')}}">
+              <span data-feather="file" class="align-text-bottom"></span>
+              Menu
+            </a>
+          </li>
+          @if(Auth::user()->isAdmin())
           <li class="nav-item">
             <a class="nav-link" href="{{route('employee.index')}}">
               <span data-feather="file" class="align-text-bottom"></span>
               Employee
             </a>
           </li>
+          @endif
+          @if(Auth::user()->isAdmin())
           <li class="nav-item">
             <a class="nav-link" href="{{route('driver.index')}}">
               <span data-feather="file" class="align-text-bottom"></span>
               Driver
             </a>
           </li>
+          @endif
+          @if(Auth::user()->isAdmin())
           <li class="nav-item">
             <a class="nav-link" href="{{route('car.index')}}">
               <span data-feather="file" class="align-text-bottom"></span>
               Car
+            </a>
+          </li>
+          @endif
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('facility.index')}}">
+              <span data-feather="file" class="align-text-bottom"></span>
+              Facility
             </a>
           </li>
         </ul>
@@ -134,14 +163,8 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            This week
-          </button>
+
+
         </div>
       </div>
 

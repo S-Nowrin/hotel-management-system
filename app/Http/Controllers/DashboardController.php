@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
-
+use Auth;
 class DashboardController extends Controller
 {
     /**
@@ -25,6 +25,7 @@ class DashboardController extends Controller
     {
         $totalbooking=Booking::all()->count();
         $totaldeposit = Booking::sum('deposit');
-        return view('dashboard')->with(compact('totalbooking','totaldeposit'));
+        $booking= Booking::where("client_id",Auth::user()->id)->get();
+        return view('dashboard')->with(compact('totalbooking','totaldeposit','booking'));
     }
 }

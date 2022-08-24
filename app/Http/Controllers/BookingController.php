@@ -17,7 +17,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings=Booking::all();
+        return view('bookinglist')->with(compact('bookings'));
     }
 
     /**
@@ -43,6 +44,20 @@ class BookingController extends Controller
         Booking::create($request->all());
         return redirect()->route('booking.index');
     }
+
+
+    public function book($room)
+    {
+        $book=new Booking();
+        $book->room_id=$room;
+        $book->client_id=\Illuminate\Support\Facades\Auth::user()->id;
+        $dt = new \DateTime();
+        $book->check_in=$dt->format('Y-m-d H:i:s');
+        $book->save();
+        return redirect()->route('dashboard.index');
+    }
+
+
 
     /**
      * Display the specified resource.

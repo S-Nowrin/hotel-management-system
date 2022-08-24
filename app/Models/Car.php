@@ -18,4 +18,7 @@ class Car extends Model
     {
         return $this->belongsTo('App\Models\Driver', 'driver_id');
     }
+    public function facility(){
+        return $this->hasOne('App\Model\Car', 'car_id', 'id');
+    }
 }

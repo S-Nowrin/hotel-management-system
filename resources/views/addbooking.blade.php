@@ -17,7 +17,7 @@
              </select>
           </div>
           <div class="col-12">
-            <label for="car_nameplate" class="form-label">Client</label>
+            <label for="car_nameplate" class="form-label">Room</label>
             <select name="room_id" class="form-select" aria-label="Default select example">
                   <option selected>Open this select menu</option>
               @foreach($rooms as $room)
@@ -30,7 +30,7 @@
         </div>
         <div class="col-12">
             <label for="car_nameplate" class="form-label">Check out</label>
-            <input type="date" class="form-control" id="check_out" name="check_in">
+            <input type="date" class="form-control" id="check_out" name="check_out">
         </div>
         <div class="col-12">
             <label for="deposit" class="form-label">Deposit</label>

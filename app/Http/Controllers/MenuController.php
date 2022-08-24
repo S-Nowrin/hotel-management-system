@@ -14,7 +14,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus=Menu::all();
+        return view('menulist')->with(compact('menus'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('addmenu');
     }
 
     /**
@@ -35,7 +36,8 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Menu::create($request->all());
+        return redirect()->route('menu.index');
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\pick_drop_facility;
 use Illuminate\Http\Request;
-
+use App\Models\Car;
 class PickDropFacilityController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class PickDropFacilityController extends Controller
      */
     public function index()
     {
-        //
+        $facilities=pick_drop_facility::all();
+        return view('facilitylist')->with(compact('facilities'));
     }
 
     /**
@@ -24,7 +25,8 @@ class PickDropFacilityController extends Controller
      */
     public function create()
     {
-        //
+        $cars=Car::all();
+        return view('addpickupdropoff')->with(compact('cars'));
     }
 
     /**
@@ -35,7 +37,8 @@ class PickDropFacilityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        pick_drop_facility::create($request->all());
+        return redirect()->route('facility.index');
     }
 
     /**
